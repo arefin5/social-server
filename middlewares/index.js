@@ -3,8 +3,9 @@ import expressJwt from "express-jwt";
 require("dotenv").config();
 
 export const requireSignin = expressJwt({
-  secret:'shhhhhhared-secret' || process.env.JWT_SECRET,
-  algorithms: ["HS256"],
+  secret: 'shhhhhhared-secret',
+   algorithms: ['HS256']
+   
 });
 
 // app.get('/protected',
