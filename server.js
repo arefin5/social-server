@@ -9,14 +9,14 @@ const morgan = require("morgan");
 require("dotenv").config();
 
 const app = express();
-const http = require("http").createServer(app);
-const io = require("socket.io")(http, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Content-type"],
-  },
-});
+// const http = require("http").createServer(app);
+// const io = require("socket.io")(http, {
+//   cors: {
+//     origin: "*",
+//     methods: ["GET", "POST"],
+//     allowedHeaders: ["Content-type"],
+//   },
+// });
 
 // db
 mongoose
@@ -54,14 +54,14 @@ app.use('/api',post)
 //   });
 // });
 
-io.on("connect", (socket) => {
-  // console.log("SOCKET>IO", socket.id);
-  socket.on("new-post", (newPost) => {
-    // console.log("socketio new post => ", newPost);
-    socket.broadcast.emit("new-post", newPost);
-  });
-});
+// io.on("connect", (socket) => {
+//   // console.log("SOCKET>IO", socket.id);
+//   socket.on("new-post", (newPost) => {
+//     // console.log("socketio new post => ", newPost);
+//     socket.broadcast.emit("new-post", newPost);
+//   });
+// });
 
 const port = process.env.PORT || 8000;
 
-http.listen(port, () => console.log(`Server running on port ${port}`));
+app.listen(port, () => console.log(`Server running on port ${port}`));
