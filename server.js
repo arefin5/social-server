@@ -2,10 +2,10 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import { readdirSync } from "fs";
-const auth= require("./routes/auth");
-const post= require("./routes/post");
+import auth from './routes/auth'
+import post from "./routes/post";
 import { connectDb } from "./helpers/db";
-const morgan = require("morgan");
+import morgan from "morgan";
 require("dotenv").config();
 
 const app = express();
