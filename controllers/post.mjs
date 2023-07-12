@@ -1,5 +1,5 @@
-import Post from "../models/post";
-import User from "../models/user";
+import Post from "../models/post.mjs";
+import User from "../models/user.mjs";
 import cloudinary from "cloudinary";
 
 cloudinary.config({

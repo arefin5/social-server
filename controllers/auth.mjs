@@ -1,7 +1,7 @@
-import User from "../models/user";
-import { hashPassword, comparePassword } from "../helpers/auth";
+import User from "../models/user.mjs";
+import { hashPassword, comparePassword } from "../helpers/auth.mjs";
 import jwt from "jsonwebtoken";
-import { nanoid } from "nanoid";
+// import uuid from 'uuid';
 
 export const register = async (req, res) => {
   //  console.log("REGISTER ENDPOINT => ", req.body);
@@ -28,6 +28,9 @@ export const register = async (req, res) => {
       error: "Email is taken",
     });
   }
+  // id
+  const randomInteger = Math.floor(Math.random() * 10);
+// console.log(randomInteger);
   // hash password
   const hashedPassword = await hashPassword(password);
 
@@ -36,7 +39,7 @@ export const register = async (req, res) => {
     email,
     password: hashedPassword,
     secret,
-    username: nanoid(6),
+    username: randomInteger,
   });
   try {
     await user.save();

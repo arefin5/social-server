@@ -1,13 +1,14 @@
 import express from "express";
-import mongoose from "mongoose";
 import cors from "cors";
 import { readdirSync } from "fs";
-import auth from './routes/auth'
-import post from "./routes/post";
-import { connectDb } from "./helpers/db";
+import auth from './routes/auth.mjs';
+import post from "./routes/post.mjs";
+import { connectDb } from "./helpers/db.mjs";
 import morgan from "morgan";
-require("dotenv").config();
+import dotenv from 'dotenv';
 
+  dotenv.config();
+// import mongoose from 'mongoose';
 const app = express();
 // const http = require("http").createServer(app);
 // const io = require("socket.io")(http, {
