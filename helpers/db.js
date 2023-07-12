@@ -1,6 +1,5 @@
-const mongoose = require("mongoose");
-
-exports.connectDb = async () => {
+import { Mongoose } from "mongoose";
+export const connectDb = async () => {
   try {
     await mongoose.connect("mongodb+srv://Arefin4:8wuY7JAN6BQncdau@cluster0.c4jxb.mongodb.net/", {
       dbName: "clone-social-midia",
