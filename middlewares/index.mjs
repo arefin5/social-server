@@ -1,28 +1,48 @@
 import Post from "../models/post.mjs";
 import User from "../models/user.mjs";
-import dotenv from 'dotenv';
-import expressJwt from "express-jwt";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 
-  dotenv.config();
-// export const requireSignin = expressJwt({
-//   secret: 'shhhhhhared-secret',
-//   algorithms: ['HS256']
-// });
-
+dotenv.config();
 
 export const requireSignin = (req, res, next) => {
-  const token = req.headers.authorization?.split(" ")[1] || req.query.token;
-  // Verify the token
-  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-    if (err) {
-      return res.status(401).json({ error: "Unauthorized" });
-    }
+  // Get the token from the request header
+  const token = req.headers.authorization?.split(" ")[1];
+
+  // Check if token exists
+  if (!token) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
+  try {
+    // Verify the token using the JWT secret
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     // Attach the decoded token to the request object
     req.user = decoded;
+
+    // Call the next middleware
     next();
-  });
+  } catch (err) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // ...
 
