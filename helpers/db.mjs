@@ -3,8 +3,11 @@ import dotenv from 'dotenv';
 
   dotenv.config();
 export const connectDb = async () => {
+  // mongodb+srv://adnan:<password>@cluster0.uai65.mongodb.net/
+
+
   try {
-    await mongoose.connect(`mongodb+srv://Arefin4:pED2QsRJOFAdI9fy@cluster0.uai65.mongodb.net/`, {
+    await mongoose.connect(`mongodb+srv://adnan:wPhgNAF13ULga8tm@cluster0.uai65.mongodb.net/`, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
